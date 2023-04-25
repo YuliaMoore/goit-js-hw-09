@@ -7,12 +7,14 @@ const input = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 
 const dataDays = document.querySelector('[data-days]');
+
 const dataHours = document.querySelector('[data-hours]');
+
 const dataMinutes = document.querySelector('[data-minutes]');
+
 const dataSeconds = document.querySelector('[data-seconds]');
 
 startBtn.disabled = true;
-
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -22,14 +24,15 @@ const options = {
     if (this.selectedDates[0] > Date.now()) {
       startBtn.disabled = false;
     } else {
-      window.alert('Please choose a date in the future');
+      alert('Please choose a date in the future');
     }
     console.log(selectedDates[0]);
   },
 };
-
 const fp = flatpickr(input, options);
+
 startBtn.addEventListener('click', startBtnclick);
+
 let timerId = null;
 
 function startBtnclick() {
@@ -51,11 +54,11 @@ function startBtnclick() {
   startBtn.disabled = true;
 }
 
-function addLeadingZero(value) {
+function getZero(value) {
   return String(value).padStart(2, '0');
 }
 
-function convertMs(ms) {
+function convertTime(ms) {
   const sec = 1000;
   const min = 60 * sec;
   const hour = min * 60;
